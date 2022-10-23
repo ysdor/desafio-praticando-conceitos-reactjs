@@ -1,12 +1,17 @@
 import { Header } from './components/Header'
+import { NewTask } from './components/NewTask'
 
 import './styles/global.css'
+import styles from './styles/App.module.css'
 
 export function App() {
   return (
     <>
       <Header />
-      <h1>Hello world</h1>
+
+      <main className={styles.content}>
+        <NewTask />
+      </main>
     </>
   )
 }
