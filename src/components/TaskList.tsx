@@ -16,6 +16,8 @@ interface ITaskListProps {
 }
 
 export function TaskList({ tasks, toggleTheTaskIsCompleted, deleteTask }: ITaskListProps) {
+  const completedTasks = tasks.filter(({ isCompleted }) => isCompleted === true)
+
   function handleToggleTheTaskIsCompleted(taskId: string) {
     toggleTheTaskIsCompleted(taskId)
   }
@@ -29,12 +31,16 @@ export function TaskList({ tasks, toggleTheTaskIsCompleted, deleteTask }: ITaskL
       <div className={styles.listInfo}>
         <strong>
           Tarefas criadas
-          <span>0</span>
+          <span>{tasks.length}</span>
         </strong>
 
         <strong>
           Concluídas
-          <span>1 de 1</span>
+          {tasks.length > 0 ? (
+            <span>{completedTasks.length} de {tasks.length}</span>
+          ) : (
+            <span>0</span>
+          )}
         </strong>
       </div>
 
