@@ -23,13 +23,33 @@ export function App() {
     setTasks([...tasks, newTask])
   }
 
+  function toggleTheTaskIsCompleted(taskId: string) {
+    const newTasks = tasks.map(({ id, title, isCompleted }) => {
+      if (id === taskId) {
+        return {
+          id,
+          title,
+          isCompleted: !isCompleted
+        }
+      }
+
+      return {
+        id,
+        title,
+        isCompleted
+      }
+    })
+
+    setTasks(newTasks)
+  }
+
   return (
     <>
       <Header />
 
       <main className={styles.content}>
         <NewTask createNewTask={createNewTask} />
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks} toggleTheTaskIsCompleted={toggleTheTaskIsCompleted} />
       </main>
     </>
   )

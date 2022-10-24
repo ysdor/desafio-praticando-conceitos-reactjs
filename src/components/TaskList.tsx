@@ -1,4 +1,5 @@
 import { ClipboardText, Trash } from 'phosphor-react'
+import { ChangeEvent } from 'react';
 
 import styles from '../styles/TaskList.module.css'
 
@@ -10,9 +11,14 @@ interface ITask {
 
 interface ITaskListProps {
   tasks: ITask[];
+  toggleTheTaskIsCompleted: (taskId: string) => void;
 }
 
-export function TaskList({ tasks }: ITaskListProps) {
+export function TaskList({ tasks, toggleTheTaskIsCompleted }: ITaskListProps) {
+  function handleToggleTheTaskIsCompleted(taskId: string) {
+    toggleTheTaskIsCompleted(taskId)
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.listInfo}>
@@ -37,6 +43,7 @@ export function TaskList({ tasks }: ITaskListProps) {
               >
                 <input
                   defaultChecked={isCompleted}
+                  onChange={() => handleToggleTheTaskIsCompleted(id)}
                   type="checkbox"
                 />
 
