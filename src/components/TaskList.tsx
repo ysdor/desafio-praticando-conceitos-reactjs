@@ -12,11 +12,16 @@ interface ITask {
 interface ITaskListProps {
   tasks: ITask[];
   toggleTheTaskIsCompleted: (taskId: string) => void;
+  deleteTask: (taskId: string) => void;
 }
 
-export function TaskList({ tasks, toggleTheTaskIsCompleted }: ITaskListProps) {
+export function TaskList({ tasks, toggleTheTaskIsCompleted, deleteTask }: ITaskListProps) {
   function handleToggleTheTaskIsCompleted(taskId: string) {
     toggleTheTaskIsCompleted(taskId)
+  }
+
+  function handleDeleteTask(taskId: string) {
+    deleteTask(taskId)
   }
 
   return (
@@ -49,7 +54,7 @@ export function TaskList({ tasks, toggleTheTaskIsCompleted }: ITaskListProps) {
 
                 <p>{title}</p>
 
-                <button type="button">
+                <button onClick={() => handleDeleteTask(id)} type="button">
                   <Trash size={14} />
                 </button>
               </li>

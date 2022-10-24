@@ -43,13 +43,24 @@ export function App() {
     setTasks(newTasks)
   }
 
+  function deleteTask(taskId: string) {
+    const newTasks = tasks.filter(({ id }) => id !== taskId)
+
+    setTasks(newTasks)
+  }
+
   return (
     <>
       <Header />
 
       <main className={styles.content}>
         <NewTask createNewTask={createNewTask} />
-        <TaskList tasks={tasks} toggleTheTaskIsCompleted={toggleTheTaskIsCompleted} />
+
+        <TaskList
+          tasks={tasks}
+          toggleTheTaskIsCompleted={toggleTheTaskIsCompleted}
+          deleteTask={deleteTask}
+        />
       </main>
     </>
   )
