@@ -15,8 +15,6 @@ interface ITask {
 export function App() {
   const [tasks, setTasks] = useState<ITask[]>([])
 
-  useEffect(() => { console.log(tasks) }, [tasks])
-
   function createNewTask(taskTitle: string) {
     const newTask = { title: taskTitle, isCompleted: false }
 
@@ -29,7 +27,7 @@ export function App() {
 
       <main className={styles.content}>
         <NewTask createNewTask={createNewTask} />
-        <TaskList />
+        <TaskList tasks={tasks} />
       </main>
     </>
   )
