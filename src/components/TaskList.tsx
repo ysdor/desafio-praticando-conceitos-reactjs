@@ -1,9 +1,9 @@
 import { ClipboardText, Trash } from 'phosphor-react'
-import { useEffect } from 'react';
 
 import styles from '../styles/TaskList.module.css'
 
 interface ITask {
+  id: string;
   title: string;
   isCompleted: boolean;
 }
@@ -29,10 +29,10 @@ export function TaskList({ tasks }: ITaskListProps) {
 
       {tasks.length > 0 ? (
         <ul className={styles.list}>
-          {tasks.map(({ title, isCompleted }) => {
+          {tasks.map(({ id, title, isCompleted }) => {
             return (
               <li
-                key={title}
+                key={id}
                 className={`${styles.listItem} ${isCompleted ? styles.itemCompleted : ''}`}
               >
                 <input
